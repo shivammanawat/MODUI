@@ -2,8 +2,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand ml-3">Mentor On Demand</a>
-    <a class="nav-item active" routerLink="/home">Home</a>
+    <a class="navbar-brand" routerLinkActive="true">Mentor On Demand</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,10 +10,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav mr-auto">
-     
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home" routerLinkActive="true">Home <span class="sr-only">(current)</span></a>
+        </li>
       </div>
       <ul class="navbar-nav">
-        <li  class="nav-item dropdown">
+        <!-- <li  class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" routerLinkActive="true" id="navbarDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Notification
@@ -24,10 +25,11 @@
             <a class="dropdown-item" href="#">Training Completed 75%</a>
             <a class="dropdown-item" href="#">Payment Successfull</a>
           </div>
-        </li>
+        </li> -->
       </ul>
-      <a  class="nav-link" > <button
-          class="btn btn-md btn-danger" type="submit" (click)="logout()" >Logout</button></a>
+      <a class="nav-link"> <button class="btn btn-sm btn-info" type="submit" (click)="notification()">Notification</button></a>
+    
+      <a class="nav-link"> <button class="btn btn-sm btn-danger" type="submit" (click)="logout()">Logout</button></a>
     </div>
   </nav>
 

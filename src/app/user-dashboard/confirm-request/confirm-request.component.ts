@@ -15,7 +15,7 @@ export class ConfirmRequestComponent implements OnInit {
   trainerData: any;
   skillData: any;
   skill: any;
-  showRequestedCourse:any;
+  showRequestedCourse: any;
   userData: any;
 
   timeSlot: string;
@@ -44,11 +44,9 @@ export class ConfirmRequestComponent implements OnInit {
     this.lid = +localid;
     console.log(this.lid);
 
-    this.auth.getUserById(this.lid).subscribe(data=>
-      {
-        this.userData = data;
-      });
-
+    this.auth.getUserById(this.lid).subscribe(data => {
+      this.userData = data;
+    });
   }
 
   getParamData() {
@@ -63,13 +61,13 @@ export class ConfirmRequestComponent implements OnInit {
   getById() {
     this.auth.getUserById(this.paramId).subscribe(data => {
       this.trainerData = data;
-      console.log("trainber data " );
-      console.log( this.trainerData);
+      console.log("trainber data ");
+      console.log(this.trainerData);
     });
   }
 
   getTech() {
-    this.auth.getTechno().subscribe(data => {
+    this.auth.getAllSkills().subscribe(data => {
       this.skill = data;
       this.skillData = _.findWhere(this.skill, {
         name: this.trainerTechnology
@@ -80,40 +78,44 @@ export class ConfirmRequestComponent implements OnInit {
   }
 
   onSave() {
-    
     let checkDate1 = moment(this.startDate).format("DD-MM-YYYY");
 
     let checkDate2 = moment(this.endDate).format("DD-MM-YYYY");
 
-    if( checkDate1 > checkDate2 )
+    if (checkDate1 > checkDate2) {
+      alert("Please select the valid Start and End Date");
+    } else 
     {
-        alert("start date cannot be greater");
-        return false;
+
+      var a = moment(this.startDate);
+      var b = moment(this.endDate);
+      var x = a.diff(b, "days");
+      // if (x < 30) {
+      //   alert("Minimum Training Cannot be less then Month");
+      // } else {
+        let data = {
+          timeSlot: this.timeSlot,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          fees: this.skillData.fees,
+          skillId: this.skillData.id,
+          skillname: this.skillData.name,
+          userId: this.userData.id,
+          userName: this.userData.userName,
+          mentorId: this.trainerData.id,
+          mentorName: this.trainerData.userName,
+          email: this.trainerData.email,
+          accept: false,
+          rejectNotify: false,
+          trainingPaymentStatus: false,
+          ratings: 0
+        };
+
+        this.auth.saveTraining(data).subscribe(data => {
+          console.log(data);
+          alert("Request Sent Check Notification");
+        });
+      // }
     }
-
-    let data = {
-      timeSlot: this.timeSlot,
-      startDate: this.startDate,
-      endDate: this.endDate,
-      fees: this.skillData.fees,
-      skillId: this.skillData.id,
-      skillname: this.skillData.name,
-      userId: this.userData.id,
-      userName: this.userData.userName,
-      mentorId: this.trainerData.id,
-      mentorName: this.trainerData.userName,
-      email: this.trainerData.email,
-      accept: false,
-      rejectNotify:false,
-      trainingPaymentStatus:false,
-      ratings:0
-    };
-
-
-
-    console.log(" saving datra " + data);
-    this.auth.trainingDetails(data).subscribe(data => {
-      alert("request sent");
-    });
   }
 }

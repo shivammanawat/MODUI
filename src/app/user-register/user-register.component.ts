@@ -55,16 +55,16 @@ export class UserRegisterComponent implements OnInit {
         role:3 
     }
 
-    alert(JSON.stringify(this.UserRegister.value));
-    this.auth.registerUser(result).subscribe(data =>
+    this.auth.saveUser(result).subscribe(data =>
     {
-      alert(data);
-      if(data == 'User Registered')
+      if(data.message == "Registered Successfully")
       {
+        alert(data.message);
         this.router.navigate(['login']);
       }
-      else if( data == 'Email already Exists')
+      else if( data.message == "Email Not Registered")
       {
+        alert(data.message);
         this.router.navigate(['user-register']);
       }
     });

@@ -35,6 +35,14 @@
                 field is mandatory</small>
             </div>
               
+            <div class="form-group required">
+                <label>Fees</label>
+                <input type="text" class="form-control" placeholder="eg: 4000" formControlName="fees">
+                <small class="text-danger"
+                  *ngIf="techAdd.get('fees').touched && techAdd.get('fees').errors?.required">This
+                  field is mandatory</small>
+              </div>
+                
             <!-- <div class="form-group required">
                 <label>Timings</label>
                 <select formControlName="timings" class="form-control mb-2 rounded dropdown">
@@ -73,6 +81,7 @@
       <tr class="thead-dark">
         <th scope="col">Name</th>
         <th scope="col">Toc</th>
+        <th scope="col">Fees</th>
         <th scope="col">Prerequisites</th>
         <th scope="col" class="text-center">Action</th>
       </tr>
@@ -82,6 +91,7 @@
         <td scope="row">{{i.name}}</td>
         <td>{{i.toc}}</td>
         <td>{{i.prerequisites}}</td>
+        <td>{{i.fees}}</td>
         <td class="text-center">
             <button class="btn btn-sm btn-func btn-danger mx-3" (click)="removeTech(i.id)">Delete</button>
         </td>

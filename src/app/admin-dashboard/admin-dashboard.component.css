@@ -24,3 +24,16 @@ a {
   strong {
     font-weight: 500;
   }
+
+  .rounded
+  {
+      border: 2px solid white;
+      border-radius: 50px 20px;
+      color: white
+  }
+  /* .rounded:hover
+  {
+    border: 2px solid black;
+    border-radius: 50px 20px;
+    color: black
+  } */

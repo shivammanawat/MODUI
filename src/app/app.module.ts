@@ -6,9 +6,10 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './shared/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,FooterComponent
   ],
   imports: [
     CommonModule,
