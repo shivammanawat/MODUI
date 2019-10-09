@@ -29,12 +29,6 @@
                                 autofocus>
                         </div>
 
-                        <div class="form-label-group py-1">
-                            <label for="yourName">Your Name</label>
-                            <input type="text" name="yourName" disabled value="shivam" class="form-control" required
-                                autofocus>
-                        </div>
-
                         <div *ngIf="trainerData" class="form-label-group py-1">
                             <label for="UserName">Trainer Name</label>
                             <input type="text" name="userName" disabled value="{{trainerData.userName}}"

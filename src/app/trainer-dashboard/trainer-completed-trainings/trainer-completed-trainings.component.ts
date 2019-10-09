@@ -25,7 +25,7 @@ export class TrainerCompletedTrainingsComponent implements OnInit {
       this.compT1 = data;
       this.compT = _.where(this.compT1, {
         status: "completed",
-        trainerId: this.lid
+        mentorId: this.lid
       });
       console.log(this.compT);
     });

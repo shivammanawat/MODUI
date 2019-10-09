@@ -9,4 +9,9 @@ describe('AuthService', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
+  it('count skills', () => {
+    const service: AuthService = TestBed.get(AuthService);
+   const obj=service.getAllSkills();
+    expect(obj).toBeDefined();
+  });
 });

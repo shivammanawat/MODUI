@@ -6,6 +6,7 @@
                 <div class="card-body">
                     <h3 class="card-title text-center">Login</h3>
                     
+                    <!-- <p-toast position="top-center"></p-toast> -->
                     <form [formGroup]="UserLogin" autocomplete="off" (submit)="onSubmit()">
 
                         <div class="form-group required">
@@ -30,7 +31,6 @@
                                 4 characters required</small>
                         </div>
 
-
                         <div class="form-row">
                             <div class="form-group col-md-12" style="text-align: center">
                                 <button class="btn btn-lg btn-success btn-block" [disabled]="!UserLogin.valid">Sign in</button>
@@ -38,29 +38,11 @@
                         </div>
                     </form>
 
-
-
-                    <!-- <form class="form-signin" >
-                       
-                        <div class="form-label-group py-1">
-                            <label for="email">Email address</label>
-                            <input type="email" name="email" id="email"  class="form-control"
-                                placeholder="Email Address" required autofocus>
-                        </div>
-                        <div class="form-label-group py-1">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" 
-                                class="form-control" placeholder="Password" required autofocus>
-                        </div>
-
-                        <button class="my-4 btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
-                            In</button>
-                    </form> -->
                     <div class="text-center my-2">
                         <p>Not registered yet ? <a class="text-center" routerLink="/user-register">User</a></p>
-                        
                         <p>Not registered yet ? <a class="text-center" routerLink="/trainer-register">Trainer</a></p>
                     </div>
+
                 </div>
             </div>
         </div>

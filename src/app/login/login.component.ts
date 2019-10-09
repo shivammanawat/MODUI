@@ -1,15 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  NgForm,
-  FormsModule,
-  ReactiveFormsModule
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, NgForm, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../shared/services/auth.service";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: "app-login",
@@ -20,7 +13,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private messageService:MessageService
   ) {}
 
   UserLogin: FormGroup;
@@ -28,14 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.UserLogin = this.fb.group({
-      Email: [
-        "",
-        [
-          Validators.required,
-          Validators.email,
-          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
-        ]
-      ],
+      Email: [ "", [ Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ]],
       Password: ["", [Validators.required, Validators.minLength(4)]]
     });
   }
@@ -56,7 +43,15 @@ export class LoginComponent implements OnInit {
         }
         else if( data1.message ==  "Email Not Registered")
         {
+          // alert(data1.message)
+
           alert(data1.message);
+
+          // this.messageService.add({
+          //   severity: "success",
+          //   detail: data1.message
+          // });
+          
         }
         else if (data1.userInfo != null && data1.message == "Logged In Successfully") {
 
@@ -68,6 +63,7 @@ export class LoginComponent implements OnInit {
               data1.userInfo.email,
               data1.userInfo.role
             );
+
             localStorage.setItem("lid", data1.userInfo.id);
             alert(data1.message);
             if (data1.userInfo.role === 1) {

@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { TrainerPaymentsComponent } from './trainer-payments.component';
 
 describe('TrainerPaymentsComponent', () => {

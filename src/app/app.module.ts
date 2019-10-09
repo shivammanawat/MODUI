@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './shared/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
+import {MessageService} from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,FooterComponent
@@ -18,7 +20,7 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,MessageService],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -82,39 +82,45 @@ export class ConfirmRequestComponent implements OnInit {
 
     let checkDate2 = moment(this.endDate).format("DD-MM-YYYY");
 
-    if (checkDate1 > checkDate2) {
-      alert("Please select the valid Start and End Date");
-    } else 
-    {
+    function compare(Date1, Date2) {
+      var momentA = moment(Date1, "DD/MM/YYYY");
+      var momentB = moment(Date2, "DD/MM/YYYY");
+      if (momentA > momentB) return 1;
+      else if (momentA < momentB) return -1;
+      else return 0;
+    }
 
-      var a = moment(this.startDate);
-      var b = moment(this.endDate);
-      var x = a.diff(b, "days");
-      // if (x < 30) {
-      //   alert("Minimum Training Cannot be less then Month");
-      // } else {
-        let data = {
-          timeSlot: this.timeSlot,
-          startDate: this.startDate,
-          endDate: this.endDate,
-          fees: this.skillData.fees,
-          skillId: this.skillData.id,
-          skillname: this.skillData.name,
-          userId: this.userData.id,
-          userName: this.userData.userName,
-          mentorId: this.trainerData.id,
-          mentorName: this.trainerData.userName,
-          email: this.trainerData.email,
-          accept: false,
-          rejectNotify: false,
-          trainingPaymentStatus: false,
-          ratings: 0
-        };
+    let dateNum = compare(checkDate1, checkDate2);
 
-        this.auth.saveTraining(data).subscribe(data => {
-          console.log(data);
-          alert("Request Sent Check Notification");
-        });
+    if (dateNum == 1) {
+      alert("End date should be greater than start date");
+    } else if (dateNum == 0) {
+      alert("Start date and End date same");
+    } else {
+
+      let data = {
+        timeSlot: this.timeSlot,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        fees: this.skillData.fees,
+        skillId: this.skillData.id,
+        skillname: this.skillData.name,
+        userId: this.userData.id,
+        userName: this.userData.userName,
+        mentorId: this.trainerData.id,
+        mentorName: this.trainerData.userName,
+        email: this.trainerData.email,
+        accept: false,
+        rejectNotify: false,
+        trainingPaymentStatus: false,
+        ratings: 0
+      };
+
+      this.auth.saveTraining(data).subscribe(data => {
+        console.log(data);
+        alert("Request Sent Check Notification");
+      });
+      // }
       // }
     }
   }
