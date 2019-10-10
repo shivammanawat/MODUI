@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import * as _ from 'underscore';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-trainer-payments',
@@ -12,7 +13,7 @@ export class TrainerPaymentsComponent implements OnInit {
   paymentSuccess: any;
   paymentFoundData : any;
   lid: number;
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,private messageService:MessageService) {}
 
   ngOnInit() {
     let localid = localStorage.getItem("lid");
@@ -32,6 +33,9 @@ export class TrainerPaymentsComponent implements OnInit {
 
   Withdraw()
   {
-    alert("added to your account");
+    this.messageService.add({
+      severity: "success",
+      detail: "Money Withdraw Successfully"
+    });
   }
 }

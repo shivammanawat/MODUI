@@ -39,23 +39,29 @@ export class LoginComponent implements OnInit {
 
         if( data1.message == "Invalid Password")
         {
-          alert(data1.message);
+          // alert(data1.message);
+          this.messageService.add({
+            severity: "warn",
+            detail: "Invalid Password"
+          });
         }
         else if( data1.message ==  "Email Not Registered")
         {
           // alert(data1.message)
-
-          alert(data1.message);
-
-          // this.messageService.add({
-          //   severity: "success",
-          //   detail: data1.message
-          // });
+          
+          this.messageService.add({
+            severity: "danger",
+            detail: "Email Not Registered"
+          });
           
         }
         else if (data1.userInfo != null && data1.message == "Logged In Successfully") {
 
-          console.log(data1);
+          this.messageService.add({
+            severity: "success",
+            detail: "Logged In Successfully"
+          });
+
           if (data1.userInfo.active === true) {
             console.log(data1.token);
             this.auth.storeUserData(
@@ -65,7 +71,6 @@ export class LoginComponent implements OnInit {
             );
 
             localStorage.setItem("lid", data1.userInfo.id);
-            alert(data1.message);
             if (data1.userInfo.role === 1) {
               this.router.navigateByUrl("/admin-dashboard/adashboard");
             } else if (data1.userInfo.role === 2) {
@@ -76,7 +81,10 @@ export class LoginComponent implements OnInit {
               console.log("Invalid User");
             }
           } else {
-            alert("Account Block By Admin");
+            this.messageService.add({
+              severity: "danger",
+              detail: "Admin Blocked"
+            });
           }
         }
       });

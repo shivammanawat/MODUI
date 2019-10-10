@@ -3,6 +3,7 @@ import { FormsModule } from "@angular/forms";
 
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { AuthService } from "src/app/shared/services/auth.service";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: "app-edit-payment",
@@ -16,7 +17,8 @@ export class EditPaymentComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -41,15 +43,26 @@ export class EditPaymentComponent implements OnInit {
 
     if( (this.model.commision + this.model.trainerFees) == this.model.fees )
     {
-      alert("enter valid amount");
+
+      this.messageService.add({
+        severity: "error",
+        detail: "Enter valid Amount"
+      });
       return false;
+
     }
 
     this.auth.updatePaymentAndCommisionById(this.id, this.model).subscribe(() => {
+      this.messageService.add({
+        severity: "error",
+        detail: "Updated Successfully"
+      });
       this.goBack();
     });
   }
+
   goBack() {
     this.router.navigate(["/admin-dashboard/all-payments"]);
   }
+
 }

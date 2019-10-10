@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { AuthService } from "src/app/shared/services/auth.service";
 import * as _ from "underscore";
 import * as moment from "moment";
+import { MessageService } from 'primeng/api';
 @Component({
   selector: "app-confirm-request",
   templateUrl: "./confirm-request.component.html",
@@ -33,7 +34,7 @@ export class ConfirmRequestComponent implements OnInit {
   request: Boolean;
   requestSent: any;
   lid: any;
-  constructor(private route: ActivatedRoute, private auth: AuthService) {}
+  constructor(private route: ActivatedRoute, private auth: AuthService,private messageService :MessageService) {}
 
   ngOnInit() {
     this.getParamData();
@@ -72,7 +73,6 @@ export class ConfirmRequestComponent implements OnInit {
       this.skillData = _.findWhere(this.skill, {
         name: this.trainerTechnology
       });
-
       console.log("skil id " + this.skillData.id);
     });
   }
@@ -93,9 +93,15 @@ export class ConfirmRequestComponent implements OnInit {
     let dateNum = compare(checkDate1, checkDate2);
 
     if (dateNum == 1) {
-      alert("End date should be greater than start date");
+      this.messageService.add({
+        severity: "warn",
+        detail: "End date should be greater than start date"
+      });
     } else if (dateNum == 0) {
-      alert("Start date and End date same");
+      this.messageService.add({
+        severity: "warn",
+        detail: "Start date and End date same"
+      });
     } else {
 
       let data = {
@@ -118,10 +124,12 @@ export class ConfirmRequestComponent implements OnInit {
 
       this.auth.saveTraining(data).subscribe(data => {
         console.log(data);
-        alert("Request Sent Check Notification");
+        this.messageService.add({
+          severity: "success",
+          detail: "Request sent check notification"
+        });
       });
-      // }
-      // }
+  
     }
   }
 }

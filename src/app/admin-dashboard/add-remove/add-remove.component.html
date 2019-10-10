@@ -4,7 +4,7 @@
   <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-login">
       <div class="modal-content">
-
+          <p-toast position="top-center"></p-toast>
         <form #myForm="ngForm" [formGroup]="techAdd" autocomplete="off">
           <div class="modal-header">
             <h4 class="modal-title">Add Skill</h4>
@@ -34,15 +34,15 @@
                 *ngIf="techAdd.get('prerequisites').touched && techAdd.get('prerequisites').errors?.required">This
                 field is mandatory</small>
             </div>
-              
+
             <div class="form-group required">
-                <label>Fees</label>
-                <input type="text" class="form-control" placeholder="eg: 4000" formControlName="fees">
-                <small class="text-danger"
-                  *ngIf="techAdd.get('fees').touched && techAdd.get('fees').errors?.required">This
-                  field is mandatory</small>
-              </div>
-                
+              <label>Fees</label>
+              <input type="text" class="form-control" placeholder="eg: 4000" formControlName="fees">
+              <small class="text-danger"
+                *ngIf="techAdd.get('fees').touched && techAdd.get('fees').errors?.required">This
+                field is mandatory</small>
+            </div>
+
             <!-- <div class="form-group required">
                 <label>Timings</label>
                 <select formControlName="timings" class="form-control mb-2 rounded dropdown">
@@ -62,8 +62,8 @@
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary pull-right" (click)="addingTechnology();myForm.reset()"
-              [disabled]="!techAdd.valid" >ADD</button>
-              <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Close</button>
+              [disabled]="!techAdd.valid">ADD</button>
+            <button type="button" class="btn btn-danger btn-md" data-dismiss="modal">Close</button>
           </div>
         </form>
       </div>
@@ -93,7 +93,7 @@
         <td>{{i.prerequisites}}</td>
         <td>{{i.fees}}</td>
         <td class="text-center">
-            <button class="btn btn-sm btn-func btn-danger mx-3" (click)="removeTech(i.id)">Delete</button>
+          <button class="btn btn-sm btn-func btn-danger mx-3" (click)="removeTech(i.id)">Delete</button>
         </td>
       </tr>
     </tbody>

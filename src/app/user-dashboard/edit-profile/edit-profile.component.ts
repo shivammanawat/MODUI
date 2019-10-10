@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/shared/services/auth.service";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,7 +16,8 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService :MessageService
   ) {}
 
   ngOnInit() {
@@ -41,7 +43,10 @@ export class EditProfileComponent implements OnInit {
     this.auth
       .updateUserProfileById(this.paramId, this.model)
       .subscribe(data => {
-        alert("updated");
+        this.messageService.add({
+          severity: "success",
+          detail: "Profile Updated Successfully"
+        });
         this.router.navigateByUrl("user-dashboard/profile");
       });
   }

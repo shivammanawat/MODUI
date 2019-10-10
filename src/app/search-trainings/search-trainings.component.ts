@@ -3,6 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { AuthService } from "src/app/shared/services/auth.service";
 
 import { Router } from "@angular/router";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: "app-search-trainings",
@@ -19,7 +20,7 @@ export class getSearchDataComponent implements OnInit {
   status2: boolean = false;
   term: string;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router,private messageService:MessageService) {}
 
   ngOnInit() {
     this.getAllSkillslogy();
@@ -42,9 +43,19 @@ export class getSearchDataComponent implements OnInit {
 
       if (Object.keys(this.showSearchData).length > 0) {
         this.status1 = false;
-
+        this.messageService.add({
+          severity: "success",
+          detail: "Trainer Found"
+        });
         this.status2 = true;
       } else {
+      
+
+        this.messageService.add({
+          severity: "error",
+          detail: "No Trainer with this skill"
+        });
+
         this.status1 = true;
         this.status2 = false;
       }

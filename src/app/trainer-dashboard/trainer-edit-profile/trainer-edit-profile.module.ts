@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TrainerEditProfileRoutingModule } from './trainer-edit-profile-routing.module';
 import { FormsModule } from '@angular/forms';
 import { TrainerEditProfileComponent } from './trainer-edit-profile.component';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -12,6 +13,7 @@ import { TrainerEditProfileComponent } from './trainer-edit-profile.component';
   imports: [
     CommonModule,
     FormsModule,
+    ToastModule,
     TrainerEditProfileRoutingModule
   ]
 })

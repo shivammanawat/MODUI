@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AllPaymentsComponent implements OnInit {
   constructor(private auth: AuthService,private router:Router) {}
-
+  show : boolean = false;
   payment: any;
   userPayment: any;
   mentorPayment: any;
@@ -24,12 +24,14 @@ export class AllPaymentsComponent implements OnInit {
   changetrainerFees:number;
 
   ngOnInit() {
+    this.show = false;
     this.getAllPayment();
   }
 
   getAllPayment() {
     this.auth.getAllPayment().subscribe(data => {
       this.payment = data;
+      this.show = true;
       this.userPayment = _.where(this.payment, { paymentStatus: true });
     });
   }

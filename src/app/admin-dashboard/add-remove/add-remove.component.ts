@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators, NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-add-remove',
   templateUrl: './add-remove.component.html',
@@ -12,7 +13,7 @@ export class AddRemoveComponent implements OnInit {
   submitted = false;
   techInfo: String;
   skillData: Object;
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, private auth: AuthService,private messageService:MessageService) { }
 
   ngOnInit() {
     this.techAdd = this.fb.group({
@@ -26,7 +27,6 @@ export class AddRemoveComponent implements OnInit {
   }
 
   getAllSkillslogy() {
-    console.log("hello")
     this.auth.getAllSkills().subscribe(data => {
       console.log(data);
       this.skillData = data;
@@ -36,10 +36,12 @@ export class AddRemoveComponent implements OnInit {
   removeTech(id) {
     this.auth.DeleteSkillById(id).subscribe(data => {
       this.techInfo = data;
-      console.log(data);
+      this.messageService.add({
+        severity: "error",
+        detail: "Skill Removed"
+      });
       this.getAllSkillslogy();
     })
-
   }
 
   addingTechnology() {
@@ -47,9 +49,11 @@ export class AddRemoveComponent implements OnInit {
     if (this.techAdd.invalid) {
       return;
     }
-
     this.auth.saveSkill(this.techAdd.value).subscribe(data => {
-      console.log(data);
+      this.messageService.add({
+        severity: "success",
+        detail: "Skill Added"
+      });
       this.techInfo = data;
       this.getAllSkillslogy();
     });

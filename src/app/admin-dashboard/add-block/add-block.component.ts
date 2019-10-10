@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/shared/services/auth.service";
 import * as _ from "underscore";
+import { MessageService } from 'primeng/api';
 @Component({
   selector: "app-add-block",
   templateUrl: "./add-block.component.html",
@@ -12,7 +13,7 @@ export class AddBlockComponent implements OnInit {
   allUsers: any;
   showBlock: Boolean;
   showUnBlock: Boolean;
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,private messageService:MessageService) {}
 
   ngOnInit() {
     this.getAllRegistereds();
@@ -35,7 +36,10 @@ export class AddBlockComponent implements OnInit {
     /* this.showUnBlock = true;
     this.showBlock = false; */
     this.auth.blockById(id).subscribe(data => {
-      alert(data);
+      this.messageService.add({
+        severity: "error",
+        detail: "Account Blocked"
+      });
       this.getAllRegistereds();
     });
   }
@@ -43,8 +47,10 @@ export class AddBlockComponent implements OnInit {
     /* this.showBlock = true;
     this.showUnBlock = false; */
     this.auth.unBlockById(id).subscribe(data => {
-      alert(data);
-
+      this.messageService.add({
+        severity: "success",
+        detail: "Account Unblocked"
+      });
       this.getAllRegistereds();
     });
   }

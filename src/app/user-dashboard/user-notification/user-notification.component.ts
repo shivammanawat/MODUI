@@ -3,7 +3,7 @@ import { AuthService } from "src/app/shared/services/auth.service";
 import * as _ from "underscore";
 import { Router } from "@angular/router";
 import * as moment from "moment";
-
+import { MessageService } from 'primeng/api';
 @Component({
   selector: "app-user-notification",
   templateUrl: "./user-notification.component.html",
@@ -22,7 +22,7 @@ export class UserNotificationComponent implements OnInit {
   checkStartDate: Date;
   checkEndDate: Date;
 
-  constructor(private auth: AuthService, public router: Router) {}
+  constructor(private auth: AuthService, public router: Router,private messageService : MessageService) {}
 
   ngOnInit() {
     console.log("in ng");
@@ -30,42 +30,32 @@ export class UserNotificationComponent implements OnInit {
     let localid = localStorage.getItem("lid");
 
     this.lid = +localid;
-    console.log(this.lid);
-
-    // this.auth.getAllPayment().subscribe(data => {
-    //   this.paymentSuccess = data;
-    //   this.paymentData = _.where(this.paymentSuccess,{userId : this.lid});
-    //   console.log(this.paymentData);
-    // });
+  
   }
 
   getRequestStatus() {
     console.log("in status");
     this.auth.getAllTraining().subscribe(data => {
       this.allData = data;
+
       this.pendingRequest = _.where(this.allData, {
         rejectNotify: false,
         accept: false,
         userId: this.lid
       });
-      // console.log("pending");
-      // console.log(this.pendingRequest);
+      
       this.acceptedTrainings = _.where(this.allData, {
         rejectNotify: false,
         accept: true,
         userId: this.lid
       });
 
-      console.log("accepted");
-      console.log(this.acceptedTrainings);
       this.rejectedTrainings = _.where(this.allData, {
         rejectNotify: true,
         accept: false,
         userId: this.lid
       });
 
-      // console.log("rejected");
-      // console.log(this.rejectedTrainings);
     });
   }
 
@@ -83,27 +73,30 @@ export class UserNotificationComponent implements OnInit {
 
       let now = moment().format("DD-MM-YYYY");
 
-      console.log(checkDate1);
-
-      console.log(now);
-
       if (now > checkDate2) {
-        alert("your request is over");
+        this.messageService.add({
+          severity: "error",
+          detail: "Training Period is over"
+        });
       } else {
         if (checkDate1 <= now) {
           this.auth.updateTrainingStatusById(id).subscribe(data => {
             console.log(data);
           });
-          alert("you can start");
+          this.messageService.add({
+            severity: "success",
+            detail: "Training started check Current Training"
+          });
         } else {
           alert("yet to start");
+          this.messageService.add({
+            severity: "success",
+            detail: "Training yet to start"
+          });
         }
       }
     });
 
-    // this.auth.changeTrainingStatus(id).subscribe(data => {
-    //   console.log(data);
-    // });
   }
 
   payment(id) {

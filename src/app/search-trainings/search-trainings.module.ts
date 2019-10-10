@@ -8,11 +8,13 @@ import { FormsModule } from '@angular/forms';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [getSearchDataComponent],
   imports: [
     CommonModule,
     FormsModule,
+    ToastModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
     getSearchDataRoutingModule

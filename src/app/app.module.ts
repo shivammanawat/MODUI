@@ -8,7 +8,6 @@ import { AuthService } from './shared/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import {MessageService} from 'primeng/api';
-
 @NgModule({
   declarations: [
     AppComponent,FooterComponent

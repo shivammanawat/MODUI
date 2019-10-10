@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UserRegisterRoutingModule } from './user-register-routing.module';
 import { UserRegisterComponent } from './user-register.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    ToastModule,
     ReactiveFormsModule,
     UserRegisterRoutingModule
   ],

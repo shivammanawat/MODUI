@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AddRemoveRoutingModule } from './add-remove-routing.module';
 import { AddRemoveComponent } from './add-remove.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    ToastModule,
     AddRemoveRoutingModule
   ]
 })

@@ -5,6 +5,7 @@ import { AuthService } from "src/app/shared/services/auth.service";
 import * as _ from "underscore";
 import { Router, RouterModule, ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: "app-payment",
@@ -25,7 +26,8 @@ export class PaymentComponent implements OnInit {
     private auth: AuthService,
     public router: Router,
     private route: ActivatedRoute, 
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private messageService : MessageService
   ) {}
 
   ngOnInit() {
@@ -53,16 +55,9 @@ export class PaymentComponent implements OnInit {
     console.log("in status");
     this.auth.getTrainingById(this.paramtrainingId).subscribe(data => {
       this.allPaymentData = data;
-      // this.getById(this.allPaymentData.id);
       this.getSkillDetails(this.allPaymentData.skillId);
     });
   }
-
-  // getById(id) {
-  //   this.auth.getUserById(this.lid).subscribe(data => {
-  //     this.userInfo = data;
-  //   });
-  // }
 
   getSkillDetails(id) {
     this.auth.getSkillById(id).subscribe(data => {
@@ -71,9 +66,6 @@ export class PaymentComponent implements OnInit {
   }
 
   savePayment() {
-    console.log(this.allPaymentData);
-    console.log("===========");
-    console.log(this.skillInfo);
 
     let data = {
       userId: this.allPaymentData.userId,
@@ -91,10 +83,13 @@ export class PaymentComponent implements OnInit {
 
     this.auth.savePayment(data).subscribe(data => {
       this.savedPaymentSuccess = data;
-      console.log(this.savedPaymentSuccess);
-      console.log(this.savedPaymentSuccess);
+
       let id = this.savedPaymentSuccess.trainingDetailsId;
       this.auth.updateTrainingAndPaymentStatusById(id).subscribe(data => {
+        this.messageService.add({
+          severity: "success",
+          detail: "Payment successfully done"
+        });
         this.router.navigate(["user-dashboard/payment-info"]);
       });
     });

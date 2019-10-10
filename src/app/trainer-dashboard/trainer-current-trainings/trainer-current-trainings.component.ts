@@ -23,7 +23,8 @@ export class TrainerCurrentTrainingsComponent implements OnInit {
   getCurrentTraining() {
     this.auth.getAllTraining().subscribe(data => {
       this.curT1 = data;
-      this.curT = _.where(this.curT1, { status: "current", trainerId : this.lid });
+      this.curT = _.where(this.curT1, { status: "current", mentorId: this.lid });
+      
       console.log(this.curT);
     });
   }

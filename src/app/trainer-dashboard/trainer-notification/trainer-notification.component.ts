@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as _ from "underscore";
 import { AuthService } from "src/app/shared/services/auth.service";
 import { ConnectableObservable } from "rxjs";
+import { MessageService } from 'primeng/api';
 @Component({
   selector: "app-trainer-notification",
   templateUrl: "./trainer-notification.component.html",
@@ -13,7 +14,7 @@ export class TrainerNotificationComponent implements OnInit {
   yourRejection: any;
   pendingApproval: any;
   lid: any;
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,private messageService:MessageService) {}
 
   ngOnInit() {
     console.log("in ng");
@@ -46,23 +47,28 @@ export class TrainerNotificationComponent implements OnInit {
         accept: false,
         mentorId: this.lid
       });
-      console.log("in rejetc");
-      console.log(this.yourRejection);
     });
   }
 
   acceptInvite(id) {
     this.auth.acceptTrainingRequestById(id).subscribe(data => {
       console.log(data);
-      alert("accepted");
-
+  
+      this.messageService.add({
+        severity: "error",
+        detail: "Request Accepted"
+      });
       this.getRequestStatus();
     });
   }
   rejectInvite(id) {
     this.auth.rejectTrainingRequestById(id).subscribe(data => {
       console.log(data);
-      alert("rejected");
+      
+      this.messageService.add({
+        severity: "success",
+        detail: "Request Rejected"
+      });
       this.getRequestStatus();
     });
   }

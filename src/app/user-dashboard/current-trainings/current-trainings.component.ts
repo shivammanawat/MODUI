@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/shared/services/auth.service";
 import * as _ from "underscore";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: "app-current-trainings",
@@ -14,7 +15,7 @@ export class CurrentTrainingsComponent implements OnInit {
   model:any;
   lid: number;
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService,private messageService:MessageService) {}
 
    
   ngOnInit() {
@@ -45,12 +46,13 @@ export class CurrentTrainingsComponent implements OnInit {
 
   updateProgress(id) {
     this.auth.updateTrainingProgress(id,this.model.progress).subscribe(data => {
-        console.log("updated");
+      this.messageService.add({
+        severity: "success",
+        detail: "Progress Updated to" + this.model.progress
+      });
         this.getCurrentTraining();
     });
 
 
-    // this.showProgressBar = false;
-    // this.progressBar = true;
   }
 }

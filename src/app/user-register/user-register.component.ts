@@ -63,25 +63,20 @@ export class UserRegisterComponent implements OnInit {
       console.log(data);
       if(data.message == "Registered Successfully")
       {
-
-        alert("Registered Successfully");
-
-        // this.messageService.add({
-        //   severity: "success",
-        //   detail: data.message
-        // });
+        this.messageService.add({
+          severity: "success",
+          detail: "Registered Successfully"
+        });
         
         this.router.navigate(['login']);
       }
       else if( data.message == "Email Not Registered")
       {
 
-        alert(data.message);
-
-        // this.messageService.add({
-        //   severity: "error",
-        //   detail: data.message
-        // });
+        this.messageService.add({
+          severity: "error",
+          detail: "Email Not Registered"
+        });
         
         this.router.navigate(['user-register']);
         return false;

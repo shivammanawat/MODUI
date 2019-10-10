@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as _ from "underscore";
 import { AuthService } from "src/app/shared/services/auth.service";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: "app-completed-trainings",
@@ -12,7 +13,7 @@ export class CompletedTrainingsComponent implements OnInit {
   compT1: any;
   lid: number;
   model: any;
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,private messageService:MessageService) {}
 
   ngOnInit() {
     let localid = localStorage.getItem("lid");
@@ -43,7 +44,10 @@ export class CompletedTrainingsComponent implements OnInit {
     this.auth
       .updateTrainingRatings(id, this.model.rating)
       .subscribe(data => {
-        console.log("updated");
+        this.messageService.add({
+          severity: "success",
+          detail: "Ratings Updated"
+        });
         this.getCurrentTraining();
       });
   }

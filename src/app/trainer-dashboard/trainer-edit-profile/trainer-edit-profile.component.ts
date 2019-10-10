@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "src/app/shared/services/auth.service";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: "app-trainer-edit-profile",
@@ -14,7 +15,8 @@ export class TrainerEditProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService:MessageService
   ) {}
 
   ngOnInit() {
@@ -40,7 +42,12 @@ export class TrainerEditProfileComponent implements OnInit {
     this.auth
       .updateTrainerProfileById(this.paramId, this.model)
       .subscribe(data => {
-        alert("updated");
+        
+        this.messageService.add({
+          severity: "success",
+          detail: "Profile Updated Successfully"
+        });
+
         this.router.navigateByUrl("trainer-dashboard/trainer-profile");
       });
   }

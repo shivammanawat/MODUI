@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
+import {MessageService} from 'primeng/api';
 import {
   FormBuilder,
   Validators,
@@ -8,6 +9,7 @@ import {
 } from "@angular/forms";
 import { AuthService } from "../shared/services/auth.service";
 import { Router } from "@angular/router";
+
 
 @Component({
   selector: "app-trainer-register",
@@ -21,7 +23,8 @@ export class TrainerRegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private messageService : MessageService
   ) {}
 
   ngOnInit() {
@@ -94,19 +97,35 @@ export class TrainerRegisterComponent implements OnInit {
     };
 
     alert(JSON.stringify(this.TrainerRegister.value));
+    
     this.auth.saveUser(result).subscribe(data =>
       {
+  
+        console.log(data);
         if(data.message == "Registered Successfully")
         {
-          alert(data.message);
+          this.messageService.add({
+            severity: "success",
+            detail: "Registered Successfully"
+          });
+          
           this.router.navigate(['login']);
         }
         else if( data.message == "Email Not Registered")
         {
-          alert(data.message);
-          this.router.navigate(['trainer-register']);
+  
+          this.messageService.add({
+            severity: "error",
+            detail: "Email Not Registered"
+          });
+          
+          this.router.navigate(['user-register']);
+          return false;
+  
         }
       });
+
+
     }
     
   onReset() {
