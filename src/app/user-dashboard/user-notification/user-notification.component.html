@@ -1,14 +1,13 @@
 <div class="container-fluid py-5">
-  <div class="row py-5">
-    
+
   <h3 class="text-center text-capitalize p-4">Requests Status</h3>
-  
-  <p-toast position="top-center"></p-toast>
+  <div class="row py-5">
+    <p-toast position="top-center"></p-toast>
     <div class="col-sm-4">
-      
+
       <div class="card" style="height:200px auto;">
         <div class="card-header text-center text-white bg-info">
-          <p  id="text">Pending</p>
+          <p id="text">Pending</p>
         </div>
         <ul *ngFor="let i of pendingRequest" class="list-group list-group-flush">
           <li class="list-group-item">
@@ -26,7 +25,8 @@
         </div>
         <ul *ngFor="let i of acceptedTrainings" class="list-group list-group-flush">
           <li class="list-group-item">
-            <p *ngIf="( i.accept == true) && (i.rejectNotify == false)">You requested is accepted for {{i.skillname}} under
+            <p *ngIf="( i.accept == true) && (i.rejectNotify == false)">You requested is accepted for {{i.skillname}}
+              under
               {{i.mentorName}} from {{i.startDate  | date: 'dd/MM/yyyy' }} to
               {{i.endDate  | date: 'dd/MM/yyyy'}} on time {{i.timeSlot}} </p>
             <button *ngIf="i.trainingPaymentStatus == true && i.status != 'current' && i.status != 'completed'"
@@ -49,11 +49,12 @@
     <div class="col-sm-4">
       <div class="card" style="height:200px auto;">
         <div class="card-header text-center text-white bg-danger">
-          <p  id="text">Rejected</p>
+          <p id="text">Rejected</p>
         </div>
         <ul *ngFor="let i of rejectedTrainings" class="list-group list-group-flush">
           <li class="list-group-item">
-            <p *ngIf="( i.rejectNotify == true) && (i.accept == false)">You request is rejected for {{i.skillname}} under
+            <p *ngIf="( i.rejectNotify == true) && (i.accept == false)">You request is rejected for {{i.skillname}}
+              under
               {{i.mentorName}} from {{i.startDate  | date: 'dd/MM/yyyy' }} to {{i.endDate  | date: 'dd/MM/yyyy'}}
               on time {{i.timeSlot}} </p>
           </li>
