@@ -24,6 +24,6 @@ export class UdashboardComponent implements OnInit {
           this.username = this.alldata.firstName;
           console.log(this.alldata);
         })
-
  }
+ 
 }
