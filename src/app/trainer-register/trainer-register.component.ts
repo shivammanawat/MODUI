@@ -96,8 +96,6 @@ export class TrainerRegisterComponent implements OnInit {
       role: 2
     };
 
-    alert(JSON.stringify(this.TrainerRegister.value));
-    
     this.auth.saveUser(result).subscribe(data =>
       {
   

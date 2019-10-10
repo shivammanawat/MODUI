@@ -68,9 +68,18 @@ export class getSearchDataComponent implements OnInit {
       id: id,
       trainerTechnology: this.tech
     };
-
-    this.router.navigate(["user-dashboard/confirm-request"], {
-      queryParams: data
-    });
+    if(localStorage.getItem('role') !=null)
+    {
+      this.router.navigate(["user-dashboard/confirm-request"], {
+        queryParams: data
+      });
+    }
+    else{
+      this.messageService.add({
+        severity: "warn",
+        detail: "Login to enroll"
+      });
+    }
+   
   }
 }

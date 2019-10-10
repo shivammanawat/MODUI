@@ -49,13 +49,16 @@ export class UserNotificationComponent implements OnInit {
         accept: true,
         userId: this.lid
       });
+      console.log("accepted");
+      console.log(this.acceptedTrainings);
 
       this.rejectedTrainings = _.where(this.allData, {
         rejectNotify: true,
         accept: false,
         userId: this.lid
       });
-
+      console.log("rejected");
+      console.log(this.rejectedTrainings);
     });
   }
 

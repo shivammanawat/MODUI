@@ -90,6 +90,10 @@ export class PaymentComponent implements OnInit {
           severity: "success",
           detail: "Payment successfully done"
         });
+        this.messageService.add({
+          severity: "success",
+          detail: "Check notification to start training"
+        });
         this.router.navigate(["user-dashboard/payment-info"]);
       });
     });
