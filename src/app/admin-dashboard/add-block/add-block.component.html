@@ -1,19 +1,16 @@
 
-<section class="my-2 container" *ngIf="users">
+<section class="my-5 container" *ngIf="users">
   <h3 class="text-center text-capitalize p-4">All Users</h3>
   <p-toast position="top-center"></p-toast>
   <table class="my-5 table table-striped text-center table-responsive-sm table-sm" width="50%">
     <thead>
       <tr class="thead-dark">
-
         <th scope="col">UserName</th>
         <th scope="col">Email</th>
         <th scope="col">Action</th>
-
       </tr>
     </thead>
     <tbody>
-
       <tr *ngFor="let i of users">
         <td scope="row">{{i.userName}}</td>
         <td>{{i.email}}</td>
@@ -28,25 +25,19 @@
       </tr>
     </tbody>
   </table>
-
 </section>
 
-<section class="my-2 container" *ngIf="mentors">
+<section class="my-5 container" *ngIf="mentors">
   <h3 class="text-center text-capitalize p-4">All Mentors</h3>
-
-
   <table class="my-5 table table-striped text-center table-responsive-sm table-sm" width="50%">
       <thead>
         <tr class="thead-dark">
-  
           <th scope="col">UserName</th>
           <th scope="col">Email</th>
           <th scope="col">Action</th>
-  
         </tr>
       </thead>
       <tbody>
-  
         <tr *ngFor="let i of mentors">
           <td scope="row">{{i.userName}}</td>
           <td>{{i.email}}</td>
@@ -61,6 +52,4 @@
         </tr>
       </tbody>
     </table>
-  
-
 </section>

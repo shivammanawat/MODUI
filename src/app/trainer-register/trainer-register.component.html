@@ -113,26 +113,10 @@
                                     <select formControlName="trainerTechnology" class="form-control rounded">
                                         <option *ngFor="let t of skillData" [value]="t.name">{{t.name}}</option>
                                     </select>
-                                    <small class="text-danger"
-                                        *ngIf="TrainerRegister.get('trainerTechnology').touched && TrainerRegister.get('trainerTechnology').errors?.required">This
-                                        field is mandatory</small>
+                                    <small class="text-danger" *ngIf="TrainerRegister.get('trainerTechnology').touched
+                                     && TrainerRegister.get('trainerTechnology').errors?.required">
+                                     This field is mandatory</small>
                                 </div>
-
-
-                                <!-- <div class="form-row">
-                                    <div class="form-group required">
-                                        <label>Timings</label>
-                                        <select formControlName="trainerTimings"
-                                            class="form-control rounded">
-                                            <option *ngFor="let t of skillData" [value]="t.timings">{{t.timings}}
-                                            </option>
-                                        </select>
-                                        <small class="text-danger"
-                                            *ngIf="TrainerRegister.get('trainerTimings').touched && TrainerRegister.get('trainerTimings').errors?.required">This
-                                            field is mandatory</small>
-                                    </div>
-                                </div> -->
-
                                 <div class="form-row my-1">
                                     <div class="form-group col-md-12">
                                         <button class="btn btn-lg btn-success btn-block login"
@@ -148,8 +132,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-
-        </div>
+        <div class="col-md-4"></div>
     </div>
 </div>

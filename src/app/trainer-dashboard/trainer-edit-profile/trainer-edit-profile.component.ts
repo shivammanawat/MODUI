@@ -12,6 +12,8 @@ import { MessageService } from 'primeng/api';
 export class TrainerEditProfileComponent implements OnInit {
   paramId: number;
   model: any;
+  skillData:any;
+  
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
@@ -22,6 +24,14 @@ export class TrainerEditProfileComponent implements OnInit {
   ngOnInit() {
     this.getParamData();
     this.getById();
+    this.getAllSkills();
+  }
+
+  getAllSkills() {
+    this.auth.getAllSkills().subscribe(data => {
+      console.log(data);
+      this.skillData = data;
+    });
   }
 
   getParamData() {

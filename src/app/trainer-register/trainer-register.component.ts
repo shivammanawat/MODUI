@@ -54,11 +54,10 @@ export class TrainerRegisterComponent implements OnInit {
       trainerTechnology: ['', Validators.required]
     });
 
-    this.getAllSkillslogy();
+    this.getAllSkills();
   }
 
-  getAllSkillslogy() {
-    console.log("hello");
+  getAllSkills() {
     this.auth.getAllSkills().subscribe(data => {
       console.log(data);
       this.skillData = data;

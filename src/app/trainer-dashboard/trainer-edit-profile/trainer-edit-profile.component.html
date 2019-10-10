@@ -43,8 +43,9 @@
                             </div>
                             <label>Trainer Technology</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" [(ngModel)]="model.trainerTechnology"
-                                    name="trainerTechnology" required="required">
+                                <select [(ngModel)]="model.trainerTechnology" name="trainerTechnology" class="form-control">
+                                    <option *ngFor="let t of skillData" [value]="">{{t.name}}</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">Edit</button>

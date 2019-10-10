@@ -40,7 +40,8 @@ export class CompletedTrainingsComponent implements OnInit {
     });
   }
 
-  uodateRatings(id) {
+  updateRatings(id) {
+    console.log(this.model.ratings);
     this.auth
       .updateTrainingRatings(id, this.model.rating)
       .subscribe(data => {
