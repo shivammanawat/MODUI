@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-adashboard',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdashboardComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  username: string;
+  id:number;
+  alldata:any;
+constructor(private auth:AuthService){}
+ngOnInit()
+{
+let lid = localStorage.getItem('lid');
+this.id = +lid;
+console.log(this.id);
+    this.auth.getUserById(this.id).subscribe(data=>
+      {
+        this.alldata = data;
+        this.username = this.alldata.firstName;
+        console.log(this.alldata);
+      })
+}
 }
