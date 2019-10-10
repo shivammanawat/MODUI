@@ -13,6 +13,15 @@ export class AddRemoveComponent implements OnInit {
   submitted = false;
   techInfo: String;
   skillData: Object;
+
+  edit:number;
+
+  skillById:object;
+  name1:string;
+  fees1:number;
+  toc1:string;
+  prerequisites1:string;
+
   constructor(private fb: FormBuilder, private auth: AuthService,private messageService:MessageService) { }
 
   ngOnInit() {
@@ -23,15 +32,45 @@ export class AddRemoveComponent implements OnInit {
       fees: ['',[Validators.required]]
     });
 
-    this.getAllSkillslogy();
+    this.getAllSkills();
   }
 
-  getAllSkillslogy() {
+  getAllSkills() {
     this.auth.getAllSkills().subscribe(data => {
       console.log(data);
       this.skillData = data;
     });
   }
+
+  editSkill(id){
+    this.edit=id;
+    this.auth.getSkillById(id).subscribe(data=>{
+      this.skillById=data;
+      this.name1 =this.skillById['name'],
+      this.toc1=this.skillById['toc'],
+      this.prerequisites1=this.skillById['prerequisites'],
+      this.fees1=this.skillById['fees']      
+    });
+  }
+
+  
+saveSkill(id)
+{
+  this.auth.getSkillById(id).subscribe(data=>{
+    var result={
+      name:this.name1,
+      fees:this.fees1,
+      toc:this.toc1,
+      prerequisites:this.prerequisites1
+    }     
+    console.log(result); 
+    this.auth.editSkillById(id,result).subscribe(data=>{
+      console.log("success");
+      this.getAllSkills();
+    })
+  });
+  this.edit=0; 
+}
 
   removeTech(id) {
     this.auth.DeleteSkillById(id).subscribe(data => {
@@ -40,7 +79,7 @@ export class AddRemoveComponent implements OnInit {
         severity: "error",
         detail: "Skill Removed"
       });
-      this.getAllSkillslogy();
+      this.getAllSkills();
     })
   }
 
@@ -55,7 +94,7 @@ export class AddRemoveComponent implements OnInit {
         detail: "Skill Added"
       });
       this.techInfo = data;
-      this.getAllSkillslogy();
+      this.getAllSkills();
     });
 
   }

@@ -19,10 +19,12 @@ export class getSearchDataComponent implements OnInit {
   status1: boolean = false;
   status2: boolean = false;
   term: string;
+  p:any;
 
   constructor(private auth: AuthService, private router: Router,private messageService:MessageService) {}
 
   ngOnInit() {
+    this.p = 1;
     this.getAllSkillslogy();
     console.log("get tech");
     this.status1 = false;

@@ -83,7 +83,7 @@ export class AuthService {
   public saveSkill(tech) {
     console.log(tech);
     return this.http
-      .post("https://localhost:44307/app/saveSkill", tech, httpOptions1)
+      .post("https://localhost:44307/api/saveSkill", tech, httpOptions1)
       .pipe(map(data1 => (data1 = JSON.parse(JSON.stringify(data1)))));
   }
 
@@ -120,6 +120,13 @@ export class AuthService {
     console.log("in update")
     return this.http
       .put("https://localhost:44307/api/updatePaymentAndCommisionById/" + id, model, httpOptions1)
+      .pipe(map(data1 => (data1 = JSON.parse(JSON.stringify(data1)))));
+  }
+
+  public editSkillById(id,model)
+  {
+    return this.http
+      .put("https://localhost:44307/api/editSkillById/" + id, model, httpOptions1)
       .pipe(map(data1 => (data1 = JSON.parse(JSON.stringify(data1)))));
   }
   

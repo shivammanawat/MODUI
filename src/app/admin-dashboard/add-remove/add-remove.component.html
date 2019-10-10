@@ -4,7 +4,7 @@
   <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-login">
       <div class="modal-content">
-          <p-toast position="top-center"></p-toast>
+        <p-toast position="top-center"></p-toast>
         <form #myForm="ngForm" [formGroup]="techAdd" autocomplete="off">
           <div class="modal-header">
             <h4 class="modal-title">Add Skill</h4>
@@ -42,23 +42,6 @@
                 *ngIf="techAdd.get('fees').touched && techAdd.get('fees').errors?.required">This
                 field is mandatory</small>
             </div>
-
-            <!-- <div class="form-group required">
-                <label>Timings</label>
-                <select formControlName="timings" class="form-control mb-2 rounded dropdown">
-                  <option value="09:00 AM - 12:00 PM">09:00 AM - 12:00 PM</option>
-                  
-                  <option value="12:00 PM - 03:00 PM">12:00 PM - 03:00 PM</option>
-                  
-                  <option value="03:00 PM - 06:00 PM">03:00 PM - 06:00 PM</option>
-                  
-                  <option value="06:00 PM - 09:00 PM">06:00 PM - 09:00 PM</option>
-                </select>
-                <small class="text-danger"
-                  *ngIf="techAdd.get('timings').touched && techAdd.get('timings').errors?.required">This
-                  field is mandatory</small>
-              </div> -->
-
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary pull-right" (click)="addingTechnology();myForm.reset()"
@@ -83,20 +66,56 @@
         <th scope="col">Toc</th>
         <th scope="col">Fees</th>
         <th scope="col">Prerequisites</th>
-        <th scope="col" class="text-center">Action</th>
+        <th scope="col" class="text-center">Edit</th>
+
+        <th scope="col" class="text-center">Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let i of skillData">
-        <td scope="row">{{i.name}}</td>
-        <td>{{i.toc}}</td>
-        <td>{{i.prerequisites}}</td>
-        <td>{{i.fees}}</td>
+      <tr *ngFor="let items of skillData">
+
+        <td>
+          <div *ngIf="edit!=items.id">{{items.name}}</div>
+          <div *ngIf="edit==items.id"><input type="text" [(ngModel)]="name1" name="name1"
+              style="height: 30px;margin: 0px;" /></div>
+        </td>
+        <td>
+          <div *ngIf="edit!=items.id">{{items.toc}}</div>
+          <div *ngIf="edit==items.id"><input type="text" [(ngModel)]="toc1" name="toc1"
+              style="height: 30px;margin: 0px;" /></div>
+        </td>
+        <td>
+          <div *ngIf="edit!=items.id">{{items.fees}}</div>
+          <div *ngIf="edit==items.id"><input type="text" [(ngModel)]="fees1" name="fees1"
+              style="height: 30px;margin: 0px;" /></div>
+        </td>
+        <td>
+          <div *ngIf="edit!=items.id">{{items.prerequisites}}</div>
+          <div *ngIf="edit==items.id"><input type="text" [(ngModel)]="prerequisites1" name="prerequisites1"
+              style="height: 30px;margin: 0px;" /></div>
+        </td>
+        <td>
+          <div *ngIf="edit!=items.id"><button type="button" class="btn btn-primary btn-sm"
+              (click)="editSkill(items.id)">Edit</button></div>
+          <div *ngIf="edit==items.id"><button type="button" class="btn btn-primary btn-sm"
+              (click)="saveSkill(items.id)">Save</button></div>
+        </td>
         <td class="text-center">
-          <button class="btn btn-sm btn-func btn-danger mx-3" (click)="removeTech(i.id)">Delete</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeTech(items.id)">Remove</button>
         </td>
       </tr>
     </tbody>
   </table>
 
 </section>
+
+<!-- 
+        <td scope="row">{{i.name}}</td>
+        <td>{{i.toc}}</td>
+        <td>{{i.fees}}</td>
+        <td>{{i.prerequisites}}</td>
+        <td class="text-center">
+          <button class="btn btn-sm btn-func btn-danger mx-3" (click)="editTech(i.id)">Edit</button>
+          <button class="btn btn-sm btn-func btn-danger mx-3" (click)="removeTech(i.id)">Delete</button>
+        </td> 
+-->

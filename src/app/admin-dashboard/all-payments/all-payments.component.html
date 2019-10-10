@@ -16,9 +16,9 @@
         <tbody>
           <tr *ngFor="let i of userPayment">
             <td scope="row">{{i.userId}}</td>
-            <td>{{i.skillName}}</td>
-            <td>{{i.paymentStatus}}</td>
-            <td>{{i.fees}}</td>
+            <td scope="row">{{i.skillName}}</td>
+            <td scope="row">{{i.paymentStatus}}</td>
+            <td scope="row">{{i.fees}}</td>
           </tr>
         </tbody>
       </table>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
         <h3 class="text-center text-capitalize p-4">All Payments Mentors</h3>
 
-        <table class="my-5 table table-striped table-responsive-sm table-sm" width="50%">
+        <table class="my-5 table table-striped text-center table-responsive-sm table-sm" width="50%">
           <thead>
             <tr class="thead-dark">
               <th scope="col">Trainer Id</th>
@@ -48,11 +48,11 @@
           </thead>
           <tbody>
             <tr *ngFor="let i of userPayment">
-              <td scope="row">{{i.trainerId}}</td>
-              <td>{{i.skillName}}</td>
-              <td>{{i.fees}}</td>
-              <td>{{i.commision}}</td>
-              <td>{{i.trainerFees}}</td>
+              <td class="text-center">{{i.trainerId}}</td>
+              <td class="text-center">{{i.skillName}}</td>
+              <td class="text-center">{{i.fees}}</td>
+              <td class="text-center">{{i.commision}}</td>
+              <td class="text-center">{{i.trainerFees}}</td>
               <td class="text-center">
                 <a class="btn  mybtn  btn-success" (click)="moveToEdit(i.id)"><i class="fas fa-pencil-alt"></i></a>
               </td>
