@@ -98,32 +98,25 @@ export class TrainerRegisterComponent implements OnInit {
 
     this.auth.saveUser(result).subscribe(data =>
       {
-  
-        console.log(data);
         if(data.message == "Registered Successfully")
         {
           this.messageService.add({
             severity: "success",
             detail: "Registered Successfully"
-          });
-          
+          });   
           this.router.navigate(['login']);
         }
         else if( data.message == "Email Not Registered")
         {
-  
           this.messageService.add({
             severity: "error",
             detail: "Email Not Registered"
           });
-          
           this.router.navigate(['user-register']);
           return false;
-  
         }
       });
-
-
+      this.onReset();
     }
     
   onReset() {

@@ -23,7 +23,7 @@
             </div>
 
             <div class="col-sm-2 col-sm-2"></div>
-            
+
         </div>
     </form>
 </section>
@@ -43,11 +43,15 @@
             <input type="text" name="search" size="12" placeholder="Search By Name">
             <button> <i class="fa fa-search"></i></button>
         </div>-->
-        <div class="col-md-6 text-center"> 
+        <div class="col-md-2 text-center">
+            <input type="text" [(ngModel)]="term" name="search" size="12" placeholder="Search By Name">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+        <div class="col-md-5 text-center">
             <p class="text-muted h4"> Search Result for " {{tech}} "
             </p>
         </div>
-        <div class="col-md-3 text-center">
+        <div class="col-md-4 text-center">
             <div class="display-pagination-control">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>

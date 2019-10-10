@@ -83,6 +83,7 @@ export class UserRegisterComponent implements OnInit {
 
       }
     });
+    this.onReset();
   }
 
     onReset() {
