@@ -7,7 +7,7 @@ import { Gaurd4Guard } from './shared/gaurd/gaurd4.guard';
 
 export const routes: Routes = [
 
-  { path: '', redirectTo:'home', pathMatch:'full'},
+  { path: '', redirectTo:'home', pathMatch:'full',canActivate:[Gaurd1Guard]},
   { path: 'home', loadChildren:'src/app/home/home.module#HomeModule',canActivate:[Gaurd1Guard]},
   { path: 'user-register', loadChildren:'./user-register/user-register.module#UserRegisterModule',canActivate:[Gaurd1Guard]},
   { path: 'trainer-register', loadChildren:'./trainer-register/trainer-register.module#TrainerRegisterModule',canActivate:[Gaurd1Guard]},

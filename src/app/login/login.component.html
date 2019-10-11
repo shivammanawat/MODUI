@@ -13,8 +13,8 @@
                             <label>Email</label>
                             <input class="form-control" formControlName="Email">
                             <small class="text-danger"
-                                *ngIf="UserLogin.get('Email').touched && UserLogin.get('Email').errors?.required">This
-                                field is mandatory</small>
+                                *ngIf="UserLogin.get('Email').touched && UserLogin.get('Email').errors?.required">
+                                Email is mandatory</small>
                             <small class="text-danger"
                                 *ngIf="UserLogin.get('Email').touched && UserLogin.get('Email').errors?.pattern">Invalid
                                 Email Address</small>
@@ -24,8 +24,8 @@
                             <label>Enter Password</label>
                             <input type="password" class="form-control" formControlName="Password">
                             <small class="text-danger"
-                                *ngIf="UserLogin.get('Password').touched && UserLogin.get('Password').errors?.required">This
-                                field is mandatory</small>
+                                *ngIf="UserLogin.get('Password').touched && UserLogin.get('Password').errors?.required">
+                                Password is mandatory</small>
                             <small class="text-danger"
                                 *ngIf="UserLogin.get('Password').touched && UserLogin.get('Password').errors?.minlength">Minimun
                                 4 characters required</small>

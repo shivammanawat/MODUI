@@ -25,12 +25,6 @@ export class ConfirmRequestComponent implements OnInit {
 
   checkStartDate: Date;
   checkEndDate: Date;
-  // userName: string;
-  // email: string;
-  // name: string;
-  // fees: string;
-  // prerequisites: string;
-  // yourName: string;
   request: Boolean;
   requestSent: any;
   lid: any;
@@ -78,6 +72,29 @@ export class ConfirmRequestComponent implements OnInit {
   }
 
   onSave() {
+
+    if(this.startDate == null)
+    {
+      this.messageService.add({
+        severity: "error",
+        detail: "Start Date is required"
+      });
+    }
+    if(this.endDate == null)
+    {
+      this.messageService.add({
+        severity: "error",
+        detail: "End Date is required"
+      });
+    }
+    if(this.timeSlot == null )
+    {
+      this.messageService.add({
+        severity: "error",
+        detail: "Time Slot is required"
+      });
+    }
+
     let checkDate1 = moment(this.startDate).format("DD-MM-YYYY");
 
     let checkDate2 = moment(this.endDate).format("DD-MM-YYYY");

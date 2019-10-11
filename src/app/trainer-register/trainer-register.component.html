@@ -15,20 +15,20 @@
                                         <label>First Name</label>
                                         <input class="form-control" formControlName="firstName">
                                         <small class="text-danger"
-                                            *ngIf="TrainerRegister.get('firstName').touched && TrainerRegister.get('firstName').errors?.required">This
-                                            field is mandatory</small>
+                                            *ngIf="TrainerRegister.get('firstName').touched && TrainerRegister.get('firstName').errors?.required">
+                                            First Name is mandatory</small>
                                         <small class="text-danger"
-                                            *ngIf="TrainerRegister.get('firstName').touched && TrainerRegister.get('firstName').errors?.pattern">firstName
+                                            *ngIf="TrainerRegister.get('firstName').touched && TrainerRegister.get('firstName').errors?.pattern">First Name
                                             cannot have special characters or digits</small>
                                     </div>
                                     <div class="form-group col required">
                                         <label>Last Name</label>
                                         <input class="form-control" formControlName="lastName">
                                         <small class="text-danger"
-                                            *ngIf="TrainerRegister.get('lastName').touched && TrainerRegister.get('lastName').errors?.required">This
-                                            field is mandatory</small>
+                                            *ngIf="TrainerRegister.get('lastName').touched && TrainerRegister.get('lastName').errors?.required">
+                                            Last Name is mandatory</small>
                                         <small class="text-danger"
-                                            *ngIf="TrainerRegister.get('lastName').touched && TrainerRegister.get('lastName').errors?.pattern">lastName
+                                            *ngIf="TrainerRegister.get('lastName').touched && TrainerRegister.get('lastName').errors?.pattern">Last Name
                                             cannot have special characters or digits</small>
                                     </div>
                                 </div>
@@ -37,8 +37,8 @@
                                     <label>User Name</label>
                                     <input class="form-control" formControlName="userName">
                                     <small class="text-danger"
-                                        *ngIf="TrainerRegister.get('userName').touched && TrainerRegister.get('userName').errors?.required">This
-                                        field is mandatory</small>
+                                        *ngIf="TrainerRegister.get('userName').touched && TrainerRegister.get('userName').errors?.required">
+                                        User Name is mandatory</small>
                                 </div>
 
 
@@ -46,8 +46,8 @@
                                     <label>Email</label>
                                     <input class="form-control" formControlName="email">
                                     <small class="text-danger"
-                                        *ngIf="TrainerRegister.get('email').touched && TrainerRegister.get('email').errors?.required">This
-                                        field is mandatory</small>
+                                        *ngIf="TrainerRegister.get('email').touched && TrainerRegister.get('email').errors?.required">
+                                        Email is mandatory</small>
                                     <small class="text-danger"
                                         *ngIf="TrainerRegister.get('email').touched && TrainerRegister.get('email').errors?.pattern">Invalid
                                         Email Address</small>
@@ -57,8 +57,8 @@
                                     <label>Contact Number</label>
                                     <input class="form-control" formControlName="contactNumber">
                                     <small class="text-danger"
-                                        *ngIf="TrainerRegister.get('contactNumber').touched && TrainerRegister.get('contactNumber').errors?.required">This
-                                        field is mandatory</small>
+                                        *ngIf="TrainerRegister.get('contactNumber').touched && TrainerRegister.get('contactNumber').errors?.required">
+                                        Contact Number is mandatory</small>
                                     <small class="text-danger"
                                         *ngIf="TrainerRegister.get('contactNumber').touched && TrainerRegister.get('contactNumber').errors?.pattern">Invalid
                                         Contact Number</small>
@@ -69,8 +69,8 @@
                                         <label>Enter Password</label>
                                         <input type="password" class="form-control" formControlName="password">
                                         <small class="text-danger"
-                                            *ngIf="TrainerRegister.get('Passwords.password').touched && TrainerRegister.get('Passwords.password').errors?.required">This
-                                            field is mandatory</small>
+                                            *ngIf="TrainerRegister.get('Passwords.password').touched && TrainerRegister.get('Passwords.password').errors?.required">
+                                            Passwords is mandatory</small>
                                         <small class="text-danger"
                                             *ngIf="TrainerRegister.get('Passwords.password').touched && TrainerRegister.get('Passwords.password').errors?.minlength">Minimun
                                             4 characters required</small>
@@ -79,8 +79,8 @@
                                         <label>Confirm Password</label>
                                         <input type="password" class="form-control" formControlName="confirmPassword">
                                         <small class="text-danger"
-                                            *ngIf="TrainerRegister.get('Passwords.confirmPassword').touched && TrainerRegister.get('Passwords.confirmPassword').errors?.required">This
-                                            field is mandatory</small>
+                                            *ngIf="TrainerRegister.get('Passwords.confirmPassword').touched && TrainerRegister.get('Passwords.confirmPassword').errors?.required">
+                                            Confirm Password is mandatory</small>
                                         <small class="text-danger"
                                             *ngIf="TrainerRegister.get('Passwords.confirmPassword').touched && TrainerRegister.get('Passwords.confirmPassword').errors?.passwordMismatch">Confirm
                                             Password does not match</small>
@@ -91,8 +91,8 @@
                                     <label>Linkedin Url</label>
                                     <input class="form-control" formControlName="linkedinURL">
                                     <small class="text-danger"
-                                        *ngIf="TrainerRegister.get('linkedinURL').touched && TrainerRegister.get('linkedinURL').errors?.required">This
-                                        field is mandatory</small>
+                                        *ngIf="TrainerRegister.get('linkedinURL').touched && TrainerRegister.get('linkedinURL').errors?.required">
+                                        Linkedin Url is mandatory</small>
                                     <small class="text-danger"
                                         *ngIf="TrainerRegister.get('linkedinURL').touched && TrainerRegister.get('linkedinURL').errors?.pattern">Invalid
                                         Linkedin Url </small>
@@ -101,8 +101,8 @@
                                     <label>Experience</label>
                                     <input class="form-control" formControlName="yearOfExperience">
                                     <small class="text-danger"
-                                        *ngIf="TrainerRegister.get('yearOfExperience').touched && TrainerRegister.get('yearOfExperience').errors?.required">This
-                                        field is mandatory</small>
+                                        *ngIf="TrainerRegister.get('yearOfExperience').touched && TrainerRegister.get('yearOfExperience').errors?.required">
+                                        Experience is mandatory</small>
                                     <small class="text-danger"
                                         *ngIf="TrainerRegister.get('yearOfExperience').touched && TrainerRegister.get('yearOfExperience').errors?.pattern">Invalid
                                         Experience in number
@@ -115,7 +115,7 @@
                                     </select>
                                     <small class="text-danger" *ngIf="TrainerRegister.get('trainerTechnology').touched
                                      && TrainerRegister.get('trainerTechnology').errors?.required">
-                                     This field is mandatory</small>
+                                     Technology is mandatory</small>
                                 </div>
                                 <div class="form-row my-1">
                                     <div class="form-group col-md-12">
